@@ -51,7 +51,7 @@ public:
     }
     int tab(vector<vector<int>>& grid, int m, int n) {
         vector<vector<vector<int>>> dp(m,
-    vector<vector<int>>(n, vector<int>(n, -1e9)));
+    vector<vector<int>>(n, vector<int>(n, INT_MIN/2)));
         for (int c1 = 0; c1 < n; c1++) {
             for (int c2 = 0; c2 < n; c2++) {
                 if (c1 == c2)
