@@ -29,8 +29,20 @@ public:
     int tab(vector<int>& nums, int n, int total) {
         vector<vector<int>> dp(n+1, vector<int>(total+1,0));
         for(int j=0;j<=total;j++) {
-            
+            dp[n][j] = abs(total - 2*j);
         }
+        for(int i=n-1;i>=0;i++) {
+            for(int j=0;j<=total;j++) {
+                int take = INT_MAX;
+                if(j+nums[i] <= total){
+                    int take = dp[i+1][j + nums[i]];
+                }
+                int skip = dp[i+1][j];
+
+                dp[i][j] = min(take, skip);
+            }
+        }
+        return dp[0][0];
 
     }
     int minimumDifference(vector<int>& nums) {
