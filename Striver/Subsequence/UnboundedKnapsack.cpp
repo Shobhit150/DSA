@@ -32,9 +32,22 @@ class Solution {
         return dp[currLeft] = res;
 
     }
+    int tab(vector<int>& wt, vector<int>& val, int n, int W) {
+        vector<int> dp(W+1,0);
+        for(int i=W-1;i>=0;i--) {
+            int res = INT_MIN/2;
+            for(int j=0;j<n;j++) {
+                if(i + wt[j] <= W) {
+                    res = max(res, val[j] + dp[i + wt[j]]);
+                }
+            }
+            dp[i] = res;
+        }
+        return dp[0];
+    }
     int unboundedKnapsack(vector<int>& wt, vector<int>& val, int n, int W) {
         vector<int> dp(W+1,-1);
-        return memo(wt, val, n, W, dp);
+        return tab(wt, val, n, W);
     }
 };
 
