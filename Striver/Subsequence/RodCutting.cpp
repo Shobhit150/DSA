@@ -3,7 +3,9 @@ using namespace std;
 
 class Solution{
     public:
-    int bruteForce()
+    int bruteForce() {
+        
+    }
     int rodCutting(vector<int> price, int n) {
 
     }
