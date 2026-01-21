@@ -92,14 +92,23 @@ public:
         int n = nums.size();
         vector<vector<int>> dp(n+1, vector<int>(n+1,0));
         for(int i=n-1;i>=0;i--) {
-            for(int j=0;j<)
+            for(int j=i-1;j>= -1;j--) {
+                int maxi = 0;
+                if(j==-1 || nums[j] < nums[i]) {
+                    maxi = 1 + max(maxi, dp[i+1][i+1]);
+                }
+                maxi = max(maxi, dp[i+1][j+1]);
+                dp[i][j+1] = maxi;
+            }
         }
+        return dp[0][0];
+        
     }
     int lengthOfLIS(vector<int>& nums) {
         vector<int> temp;
         int n = nums.size();
         vector<vector<int>> dp(n+1, vector<int>(n+1,-1));
-        return memo(nums, 0, -1, dp);
+        return memo(nums,0,-1,dp);
     }
 };
 
