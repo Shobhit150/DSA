@@ -32,6 +32,6 @@ public:
 
 int main(){
     Solution s;
-    vector<int> nums = {1, 5, 2, 3, 4};
+    vector<int> nums = {1, 5, 2, 3, 4,2,1};
     cout << s.lengthOfLIS(nums) << endl;
 }
