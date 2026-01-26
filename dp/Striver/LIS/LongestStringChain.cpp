@@ -4,28 +4,28 @@
 using namespace std;
 class Solution {
 public:
-    bool comp(string& str1, string& str2) {
-        if(str2.size() - str1.size() != 1) return false;
+    bool comp(string& shorter,string& longer) {
+        if(longer.size() - shorter.size() != 1) return false;
         int j=0;
-        for(int i=0;i<str2.size();i++) {
-            if(str2[i] == str1[j]) {
+        for(int i=0;i<longer.size();i++) {
+            if(j < shorter.size() && longer[i] == shorter[j]) {
                 j++;
             }
         }
-        if(j==str1.size()) return true;
+        if(j==shorter.size()) return true;
         return false;
     }
     
     int tab(vector<string>& words) {
-        sort(words.begin(), words.end(), [](string &str1, string str2) {
+        sort(words.begin(), words.end(), [](string &str1,string &str2) {
             return str1.size() < str2.size();
         });
         int n = words.size();
         int maxi = 1;
-        vector<int> dp(n+1,1);
+        vector<int> dp(n,1);
         for(int i=0;i<n;i++) {
             for(int j=0;j<i;j++) {
-                if(comp(words[i],words[j])) {
+                if(comp(words[j],words[i])) {
                     dp[i] = max(dp[i], 1 + dp[j]);
                     maxi = max(maxi, dp[i]);
                 }
@@ -42,8 +42,8 @@ int main(){
     Solution s;
     vector<string> words = {"a","b","ba","bca","bda","bdca"};
     string str1 = "bdca";
-    string str2 = "bd";
+    string str2 = "bdc";
     
-    cout << s.comp(str1, str2);
+    cout << s.longestStrChain(words);
     
 }
