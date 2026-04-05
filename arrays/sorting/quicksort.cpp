@@ -27,15 +27,18 @@ ll mod_add(ll a, ll b) { return (a % MOD + b % MOD) % MOD; }
 ll mod_sub(ll a, ll b) { return (a % MOD - b % MOD + MOD) % MOD; }
 ll mod_mul(ll a, ll b) { return (a % MOD * b % MOD) % MOD; }
 
-void merge(vector<int> &nums, int l, int mid, int r) {
+void partition(vector<int> &nums, int l, int r) {
+    int pivot = nums[r];
 
+    int i = l-1;
+    
 }
 
 void quicksort(vector<int> &nums, int l, int r) {
     if(l >= r) return;
-    int mid = (l+r)/2;
+    partition(arr, l, r);
     quicksort(nums, l, mid-1);
-    quicksort(nums, l, mid+1);
+    quicksort(nums, mid+1, r);
 }
 
 void solve() {
