@@ -27,23 +27,49 @@ ll mod_add(ll a, ll b) { return (a % MOD + b % MOD) % MOD; }
 ll mod_sub(ll a, ll b) { return (a % MOD - b % MOD + MOD) % MOD; }
 ll mod_mul(ll a, ll b) { return (a % MOD * b % MOD) % MOD; }
 
-void partition(vector<int> &nums, int l, int r) {
+int HoarePartition(vector<int> &nums, int l, int r) {
+    int pivot = nums[l];
+
+    int i = l;
+    int j = r;
+    while(i<j) {
+        while(i<=r-1 && nums[i] <= pivot) {
+            i++;
+        }
+        while(j>=l+1 && nums[j] >= pivot) {
+            j--;
+        }
+        if(i<j) swap(nums[i], nums[j]);
+    } 
+    swap(nums[l], nums[j]);
+    return j;
+}
+
+int LomutoPartition(vector<int> &nums, int l, int r) {
     int pivot = nums[r];
 
-    int i = l-1;
-    
+    int i = l;
+
+    for(int j=l;j<r;j++) {
+        if(nums[j] < pivot) {
+            swap(nums[i], nums[j]);
+            i++;
+        }
+    }
+    swap(nums[r], nums[i]);
+    return i;
 }
 
 void quicksort(vector<int> &nums, int l, int r) {
     if(l >= r) return;
-    partition(arr, l, r);
+    int mid = LomutoPartition(nums, l, r);
     quicksort(nums, l, mid-1);
     quicksort(nums, mid+1, r);
 }
 
 void solve() {
     vector<int> nums = { 5, 2, 3, 1, 4 };
-    insertsortrecursive(nums, 1);
+    quicksort(nums, 0, nums.size()-1);
     for(int i=0;i<sz(nums);i++) {
         cout << nums[i] << " ";
     }
