@@ -38,11 +38,12 @@ public:
         double l = 0;
         int n = arr.size();
         double r = 0;
-        int ans = -1;
+        
         for(int i=0;i<n-1;i++) {
             double gap = (arr[i+1] - arr[i]);
             r = max(r, gap);
         }
+        double ans = r;
         while(l<=r) {
             double mid = (r+l)/2;
 
