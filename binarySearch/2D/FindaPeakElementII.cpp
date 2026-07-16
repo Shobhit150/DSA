@@ -16,9 +16,24 @@ public:
             int maxi = mat[0][mid];
             int idx = 0;
             for(int i=1;i<m;i++) {
-                if(mat[])
+                if(mat[i][mid] > maxi) {
+                    idx = i;
+                    maxi = mat[i][mid];
+                }
+            }
+
+            int left = (mid == 0) ? -1 : mat[idx][mid - 1];
+            int right = (mid == n-1) ? -1 : mat[idx][mid + 1];
+
+            if(maxi > left && maxi > right) {
+                return {idx, mid};
+            } else if(maxi < left) {
+                r = mid - 1;
+            } else {
+                l = mid + 1;
             }
         }
+        return {-1,-1};
     }
 };
 
