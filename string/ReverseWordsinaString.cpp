@@ -7,21 +7,32 @@ class Solution {
 public:
     string reverseWords(string s) {
         int n = s.size();
-        for(int i = 0; i < n; ) {
-
-            while(i < n && s[i] == ' ')
+        int i=0;
+        string temp;
+        while(i<n) {
+            while(i<n && s[i] == ' ') {
                 i++;
-
-            int start = i;
-
-            while(i < n && s[i] != ' ')
+            }
+            while(i<n && s[i] != ' ') {
+                temp += s[i];
                 i++;
-
-            reverse(s.begin() + start, s.begin() + i);
+            }
+            if(i<n) {
+                temp += ' ';
+            }
+            
         }
+        int start = 0;
+        for(int i=0;i<=temp.size();i++) {
+            
+            if(i==temp.size() || temp[i] == ' ') {
+                reverse(temp.begin() + start, temp.begin()+i);
+                start = i + 1;
+            }
+        }
+        reverse(temp.begin(), temp.end());
 
-        reverse(s.begin(), s.end());
-        return s;
+        return temp;
     }
 };
 
