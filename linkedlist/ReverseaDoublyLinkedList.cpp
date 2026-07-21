@@ -1,4 +1,4 @@
-/*
+
 class ListNode {
 public:
     int data;
@@ -7,7 +7,7 @@ public:
 
     ListNode(int val) : data(val), prev(nullptr), next(nullptr) {}
 };
-*/
+
 
 class Solution {
 public:
