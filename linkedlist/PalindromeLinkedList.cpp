@@ -36,6 +36,14 @@ public:
             tmp->next = prev;
             prev = tmp;
         }
+        if(fast) {
+            slow = slow->next;
+        }
+        while(slow && prev) {
+            if(slow->val != prev->val) return false;
+            slow = slow->next;
+            prev = prev->next;
+        }
         return true;
     }
 };
