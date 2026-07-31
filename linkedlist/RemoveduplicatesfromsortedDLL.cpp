@@ -35,9 +35,17 @@ public:
 
         while(tmp && tmp->next) {
             if(tmp->val == tmp->next->val) {
-                
+                ListNode* del = tmp->next;
+                tmp->next = del->next;
+                if(del->next) {
+                    del->next->prev = tmp;
+                }
+                delete del;
+                continue;
             }
+            tmp=tmp->next;
         }
+        return head;
     }
 };
 
