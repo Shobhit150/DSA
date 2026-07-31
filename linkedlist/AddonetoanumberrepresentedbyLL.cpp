@@ -25,7 +25,7 @@ struct ListNode
 
 class Solution {
 public:
-    void reverse(ListNode *head) {
+    ListNode* reverse(ListNode *head) {
         ListNode* curr = head;
         ListNode* prev = nullptr;
 
@@ -35,13 +35,16 @@ public:
             prev = curr;
             curr = next;
         }
-        head = prev;
+        return prev;
+
     }
     ListNode *addOne(ListNode *head) {
-        reverse(head);
+        head = reverse(head);
         int carry = 1;
         ListNode* tmp = head;
+        ListNode* prev = nullptr;
         while(carry != 0 && tmp) {
+            prev = tmp;
             if(tmp->val < 9) {
                 tmp->val += 1;
                 carry = 0;
@@ -51,9 +54,9 @@ public:
             }
         }
         if(carry) {
-            tmp->next = new ListNode(1);
+            prev->next = new ListNode(1);
         }
-        reverse(head);
+        head = reverse(head);
         return head;
     }
 };
