@@ -38,7 +38,6 @@ class Solution {
         return false;
     }
     void solveSudoku(vector<vector<int>> &mat) {
-        // code here
         vector<vector<int>> box(10, vector<int>(10,-1));
         vector<vector<int>> col(10, vector<int>(10,-1));
         vector<vector<int>> row(10, vector<int>(10,-1));
